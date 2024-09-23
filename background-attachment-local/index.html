@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../assets/vue3.js"></script>
+    <title>background-attachment:local</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      div.target {
+        background-image: url("../assets/snowman.png");
+        background-size: 100% auto;
+        overflow: auto;
+        /* background-attachment: local; */
+      }
+      .controls {
+        position: fixed;
+        left: calc(50% - 150px / 2);
+        top: 10px;
+        width: 150px;
+        text-align: center;
+        background: #ddd;
+        border: 1px solid #999;
+      }
+      @media (min-width: 900px) {
+        .target {
+          width: 80%;
+          height: 300px;
+          margin: 20px auto 0;
+        }
+        .content {
+          font-size: 50px;
+        }
+      }
+      @media (max-width: 899px) {
+        .target {
+          height: 150px;
+          margin: 10px;
+        }
+        .content {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="target" :style="backgroundAttachmentStyle">
+        <div class="content" v-for="o in 10">{{o}}</div>
+      </div>
+      <div class="controls">
+        <label>
+          <input type="radio" name="attachment" v-model="value" value="scroll" />
+          scroll
+        </label>
+        <label>
+          <input type="radio" name="attachment" v-model="value" value="local" />
+          local
+        </label>
+      </div>
+    </div>
+    <script>
+      const { createApp, ref, computed } = Vue;
+
+      createApp({
+        setup() {
+          const value = ref("local");
+          const backgroundAttachmentStyle = computed(() => {
+            return {
+              "background-attachment": value.value,
+            };
+          });
+
+          return {
+            value,
+            backgroundAttachmentStyle,
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
