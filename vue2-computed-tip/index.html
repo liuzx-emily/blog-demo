@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../assets/vue2.js"></script>
+    <title>vue2 computed tip</title>
+  </head>
+  <body>
+    <section id="app">
+      <div>list1：{{list1.join(",")}}</div>
+      <div>
+        list2：{{list2.join(",")}}
+        <input type="button" value="list2.push" @click="list2.push(2)" />
+      </div>
+      <div>
+        list3：{{list3.join(",")}}
+        <input type="button" value="list3.push" @click="list3.push(3)" />
+      </div>
+      <hr />
+      <input type="button" value="查看三个 list 的值" @click="lookOneLook" />
+    </section>
+    <script src="./index.js"></script>
+  </body>
+</html>
